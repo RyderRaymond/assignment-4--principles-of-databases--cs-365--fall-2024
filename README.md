@@ -68,7 +68,15 @@ The disadvantage is that if the index attribute is updated, or a tuple is insert
 
 ### 10. Explain the concept of an MVC, or model, view, controller, framework for designing full stack applications
 
-An MVC framework is the separation of key components of full stack applications. The model is the database for the application, and the data it stores. The model should not be openly visible to the user, which is why it is hidden by the controller. The controller sits between the model and the view. It hides the model from the user, and takes requests from the view for data, contacts the model to retrieve the data, and serves that data back to the view. The view is what the end user sees. It is usually HTML, CSS, and JavaScript. MVC ensures separation of tasks so that unwanted interactions are avoided, such as the user being able to interact with the database in an unwanted way.
+An MVC framework is a way of ensuring the separation of key components of full stack applications. The components for the MVC are the model, view, and controller.
+
+The model is the stored data for the application, including the database system that manages it. The model is not openly visible to the user, but is instead hidden by the controller. The database serves data to the controller when requested. Common DBMS's for this include MariaDB, MySQL, SQLITE, and MongoDB.
+
+The controller sits between the model and the view. It hides the model from the user, and takes requests from the view for data, contacts the model to retrieve the data, and serves that data back to the view. The controller will also make requests to modify the data in the model. The controller may also update the view if the model changes. The controller is not visible to the end user.
+
+The view is what the end user sees. It is usually HTML, CSS, and JavaScript. The view will send requests to the controller for data from the model. The view may also take in user input to modify the model, which it will send to the controller, or to update the way the data is represented in the view.
+
+MVC ensures separation of tasks so that unwanted interactions are avoided, such as the user being able to interact with the database in an unwanted way.
 
 ---
 
