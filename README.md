@@ -40,23 +40,35 @@ A Weak Entity Set is an entity set whose key partially or entirely belongs to an
 
 ### 6. [5.2.7; 6.3.8] Explain the concepts of Outerjoin, Natural Right Outer Joins, Natural Left Outer Joins, and Full Outer Joins.
 
-Replace this content with your answer
+An Outer Join is a Join in which the tuples of one relation which do not match with any tuple of the other relation have the missing attributes padded with NULL or some other filler value. These tuples which do not match are called dangling tuples. The meaning of "match" in this is that the tuple did not satisfy the condition of the join when paired with any other tuple from the other relation. Outer joins may be specified as natural joins, or just as joins "on" a particular condition.
+
+A Natural Right Outer Join is a natural join, but only tuples of the relation right of the join operator that do not match with any other tuple have the missing attributes padded with NULL and are added to the result.
+
+A Natural Left Outer Join is a natural join, but only tuples of the relation left of the join operator that do not match with any other tuple have the missing attributes padded with NULL and are added to the result.
+
+A Full Outer Join is a join, but both tuples of the left relation and of the right relation that do not match with any other tuple have the missing attributes padded with NULL and are added to the result. Because this is not specified as natural or not, the meaning of "match" is that the tuple did not satisfy the condition of the join with any other tuple. If this is a natural join, the condition is the same as a regular natural join, being the agreement of the values of the shared attributes.
 
 ### 7. [6.6.3] What is the difference between the SQL command `TRANSACTION` and the execution of any statement in SQL?
 
-Replace this content with your answer
+The difference between the SQL command 'TRANSACTION' and the execution of any statement in SQL is that any statement by default is a transaction, but the 'TRANSACTION' command allows us to group several statements together to become one single transaction. This means that all statements in the transaction must execute atomically and serially together, as if performed as a single transaction, rather than atomically and serially by themselves. The advantage is the ability to state that a sequence of statements must execute and complete from start to finish, or else have none of them execute at all, and that no statements in the sequence can overlap their execution (ensuring serializability). Without the 'TRANSACTION' command, there could be a situation where in a sequence of statements, one statement may fail but the rest continue to execute, resulting in an incorrect outcome.
 
 ### 8. [8] What is a Virtual View and what are its advantages?
 
-Replace this content with your answer
+A Virtual View is a relation that is defined through a query over other relations. These are not stored as regular tables, but rather their definition is stored, and the query processor replaces the name of the view with its definition whenever the view is mentioned in a query. This is equivalent to replacing the view's name with a subquery that is its definition. Once defined, views may be queried just like any table, and if the view is updatable, it may be used to modify the underlying table.
+
+The advantage of a view is that it provides a level of abstraction, similar to functions in most programming languages. In other words, if there is a particular query that is performed very often, rather than retyping the query many times, a view could be made with the query as the definition, and the view could be used instead of the query. Additionally, a view could be defined as the join of two tables, and then queried as if it were one table, simplifying queries that use the two tables. It could also be defined as a subset of a table, such as only movies produced by a particular studio.
 
 ### 9. [8.3] What is an *index* and what are its advantages?
 
-Replace this content with your answer
+An index is a data structure that makes it fast to find tuples that have particular values for the attributes in the index. Specifically, an index is stored as a binary search tree of (key, value) pairs, where the key is a value that the index attribute could store, and the value is the set of locations for tuples that have this value in the index attribute. Indexes are placed on the most queried attributes, which are often the key, or an attribute which is unique or almost unique.
+
+The advantage is that if a query involves checking if the index attribute is equal to some value, the DBMS immediately knows the locations of the tuples it needs, rather than having to scan all tuples of this relation to see if it has that value for this attribute. For instance, if there is a relation "Movies", with an index on the attribute "title", then a query searching for all Movies with title "King Kong" would be very fast, as the DBMS would find the (key, value) pair with the key of "King Kong", and immediately know the tuples it needs.
+
+The disadvantage is that if the index attribute is updated, or a tuple is inserted or deleted, it takes extra disk operations to update the data structures of the index.
 
 ### 10. Explain the concept of an MVC, or model, view, controller, framework for designing full stack applications
 
-Replace this content with your answer
+An MVC framework is the separation of key components of full stack applications. The model is the database for the application, and the data it stores. The model should not be openly visible to the user, which is why it is hidden by the controller. The controller sits between the model and the view. It hides the model from the user, and takes requests from the view for data, contacts the model to retrieve the data, and serves that data back to the view. The view is what the end user sees. It is usually HTML, CSS, and JavaScript. MVC ensures separation of tasks so that unwanted interactions are avoided, such as the user being able to interact with the database in an unwanted way.
 
 ---
 
